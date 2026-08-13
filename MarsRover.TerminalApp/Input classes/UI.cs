@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
- using MarsRover.TerminalApp.RoverLogic;
+using MarsRover.TerminalApp.RoverLogic;
+using MarsRover.TerminalApp.Input_classes;
 
-namespace MarsRover.TerminalApp.Input_classes
+
+namespace MarsRover.TerminalApp
 {
     public class UI
     {
@@ -30,19 +32,18 @@ namespace MarsRover.TerminalApp.Input_classes
             if (!newParser.PlateauIsValid)
             //check the available plateau is valid, if not we request user input for the plateau and validate it, if it is valid we move on to the position input, if not we loop again until we get a valid plateau input, at the beginning the PlateauIsValid is hard coded to be false
             {
-                PlateauInput(newParser.PlateauIsValid, StringObject);
+                AppLogic.PlateauInput(newParser.PlateauIsValid, StringObject, this);
 
                 if (newParser.PlateauIsValid && !newParser.PositionIsValid)
                 {
-                     PositionInput(newParser.PositionIsValid, StringObject);
-
+                    AppLogic.PositionInput(newParser.PositionIsValid, StringObject, this);
                     if (newParser.PositionIsValid && !newParser.InstructionIsValid)
                     {
-                         InstructionInput(newParser.InstructionIsValid, StringObject);
+                         AppLogic.InstructionInput(newParser.InstructionIsValid, StringObject, this);
 
                         if (newParser.InstructionIsValid)
                         {
-                            BuildRover();
+                            AppLogic.BuildRover(this);
                         }
                     }
                 }
@@ -82,78 +83,5 @@ namespace MarsRover.TerminalApp.Input_classes
             //}
         }
 
-        //These input methods have two parameters a bool that allows them to run if the input format in valid and the string object of the input
-        public string PlateauInput(bool plateauIsValid, InputStringObject stringObject ) {
-            while (plateauIsValid == false)
-            {
-                string userInput =  RequestUserInput(1);
-                // if no valid input is available we launch a request using the request user input method, if the user does not provide any input we use a default value of 9 9
-                if (userInput == "")
-                {
-                    userInput = "9 9";
-                }
-                stringObject.PlateauStr = userInput;
-                //once we have a string input we check if it is valid using the parser, if it is valid we set the plateauIsValid bool to true and the parser property to true, if not we print an error message and loop again
-                if (newParser.PlateauIsValidCheck(stringObject.PlateauStr))
-                {
-                    plateauIsValid = true;
-                    newParser.PlateauIsValid = true;
-                }
-                else { Console.WriteLine("The input is invalid"); }
-            }
-            return stringObject.PlateauStr;
-        }
-        public string PositionInput(bool isValidPosition, InputStringObject stringObject)
-        {
-            while (isValidPosition == false)
-            {
-                string userInput =  RequestUserInput(2);
-                if (userInput == "")
-                {
-                    userInput = "0 0 N";
-                }
-                stringObject.PositionStr = userInput;
-
-                if (newParser.PositionIsValidCheck(StringObject.PositionStr))
-                {
-                    isValidPosition = true;
-                    newParser.PositionIsValid = true;
-                }
-                else { Console.WriteLine("The input is invalid"); }
-            }
-            return StringObject.PositionStr;
-        }
-        public string InstructionInput(bool isValidInstruction, InputStringObject stringObject)
-        {
-            while (isValidInstruction == false)
-            {
-                string userInput = RequestUserInput(3);
-                if (userInput == "")
-                {
-                    userInput = "MMRRMMLL";
-                }
-                stringObject.InstructionStr = userInput;
-
-                if (newParser.InstructionIsValidCheck(StringObject.InstructionStr))
-                {
-                    isValidInstruction = true;
-                    newParser.InstructionIsValid = true;
-                }
-                else { Console.WriteLine("The input is invalid"); }
-            }
-            return StringObject.InstructionStr;
-        }
-        public Rover BuildRover()
-        {
-            Rover rover = new Rover.Builder()
-                            .AddPlateau(newParser.PlateauParser(StringObject.PlateauStr))
-                            .AddPosition(newParser.PositionParser(StringObject.PositionStr))
-                            .AddInstruction(newParser.InstructionParser(StringObject.InstructionStr))
-                            .Build();
-
-            rover.StoredPosition = rover.position;
-            activeSpace.Rovers.Add(rover);
-            return rover;
-        }
     }
 }

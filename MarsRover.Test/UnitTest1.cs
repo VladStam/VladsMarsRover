@@ -190,7 +190,7 @@ namespace MarsRover.Test
         public void BlackboxValidator()
         {
             UI ui = new UI();
-            Logic logic = new Logic();
+            Movement logic = new Movement();
             string testPlateau = "5 5";
             string firstRover = "1 2 N";
             string firstInstructions = "LMLMLMLMM";

@@ -9,7 +9,7 @@ using static MarsRover.TerminalApp.InputEnums;
 
 namespace MarsRover.TerminalApp.RoverLogic
 {
-    public class Logic
+    public class Movement
     {
         
         public Rover BlackBox(Rover rover)
