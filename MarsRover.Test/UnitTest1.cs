@@ -10,7 +10,6 @@ namespace MarsRover.Test
     public class Tests
     {
         [Test]
-
         public void TurnsStringIntoInstruction()
         {
             string testString = "LLLRRMM";

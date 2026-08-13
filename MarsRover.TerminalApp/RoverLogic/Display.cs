@@ -30,34 +30,50 @@ namespace MarsRover.TerminalApp.RoverLogic
             }
             
         }
-        public static void PrintExes(int xAxis, int yAxis)
+
+        public static void PrintExes(int xAxisIn, int yAxisIn)
         {
-            char[,] arr = new char[xAxis, yAxis];
+            int xAxis = (xAxisIn * 2) + 1;
+            int yAxis = (yAxisIn * 2) + 1;
 
+            char[,] arr = new char[yAxis, xAxis];
 
-            for (int i = 0; i < xAxis; i++)
+            for (int i = 0; i < yAxis; i++)
             {
-                arr[i, 0] = '+';
-
-                for (int j = 1; j < yAxis; j++)
+                for (int j = 0; j < xAxis; j++)
                 {
-                    arr[i, j] = '+';
+                    if (i % 2 == 0 && j % 2 == 0)
+                    {
+                        arr[i, j] = '+';
+                    }
+                    else if (i % 2 == 0)
+                    {
+                        arr[i, j] = '-';
+                    }
+                    else if (j % 2 == 0)
+                    {
+                        arr[i, j] = '|';
+                    }
+                    else
+                    {
+                        arr[i, j] = ' ';
+                    }
                 }
             }
-            string[] forPrinting = new string[xAxis];
 
             for (int i = 0; i < yAxis; i++)
             {
                 string combined = "";
+
                 for (int j = 0; j < xAxis; j++)
                 {
                     combined += arr[i, j];
                 }
+
                 Console.WriteLine(combined);
             }
-
         }
-
+       
     }
 }
 
