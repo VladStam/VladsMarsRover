@@ -26,6 +26,16 @@ namespace MarsRover.TerminalApp
 
             public TestingToggle toggle = new TestingToggle(true);
 
+            public string[] textPrompts =
+                [
+                    "Hello",
+                    "Please Create a plateau in format (int int) e.g. 7 7, then press enter",
+                    "Please Select a rover position in format (int int orientation) e.g. 2 2 W, then press enter",
+                    "Please input instructions as a string of Characters e.g. LLRRMMM, then press enter",
+                    "Plateau created",
+                    "Rover created",
+
+                ];
         public void StartUp()
             //method is colled from program on ionstantiation
         {
@@ -51,20 +61,12 @@ namespace MarsRover.TerminalApp
         }
         public string RequestUserInput(int code)
         {
-            string[] textPrompts =
-            [
-                "Hello",
-                "Please Create a plateau in format (int int) e.g. 7 7, then press enter",
-                "Please Select a rover position in format (int int orientation) e.g. 2 2 W, then press enter",
-                "Please input instructions as a string of Characters e.g. LLRRMMM, then press enter",
-            ];
-
             Console.WriteLine(textPrompts[code]);
-            // ehen the method is called the number in the method will dictate which messsage is called out
+            // when the method is called the number in the method will dictate which messsage is called out
             string UserInput = "";
             // creating a string called user input which is null by default
             if (toggle.TestingOn) { UserInput = toggle.inputMocks[code-1]; }
-            //when the testin toggle is on we will use the inputMocks array to provide the input, this is useful for testing purposes, when the testing toggle is off we will use the console readline method to get the user input
+            //when the testing toggle is on we will use the inputMocks array to provide the input, this is useful for testing purposes, when the testing toggle is off we will use the console readline method to get the user input
             else { UserInput = Console.ReadLine(); }
             return UserInput;
             //returns what is read as the users input, if the user does not input anything we return an empty string, this is handled in the input methods

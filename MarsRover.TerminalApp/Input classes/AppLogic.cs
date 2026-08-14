@@ -47,6 +47,7 @@ namespace MarsRover.TerminalApp.Input_classes
                 {
                     isValidPosition = true;
                     uI.newParser.PositionIsValid = true;
+                    Console.WriteLine(uI.textPrompts[4]);
                 }
                 else { Console.WriteLine("The input is invalid"); }
             }
@@ -67,6 +68,7 @@ namespace MarsRover.TerminalApp.Input_classes
                 {
                     isValidInstruction = true;
                     uI.newParser.InstructionIsValid = true;
+                    Console.WriteLine(uI.textPrompts[5]);
                 }
                 else { Console.WriteLine("The input is invalid"); }
             }

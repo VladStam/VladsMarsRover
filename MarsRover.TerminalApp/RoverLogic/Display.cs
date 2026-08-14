@@ -28,15 +28,13 @@ namespace MarsRover.TerminalApp.RoverLogic
             {
                 Console.WriteLine("0>");
             }
-            
         }
-
-        public static void PrintExes(int xAxisIn, int yAxisIn)
+        public static char[,] CreateGrid(int xAxisIn, int yAxisIn)
         {
             int xAxis = (xAxisIn * 2) + 1;
             int yAxis = (yAxisIn * 2) + 1;
 
-            char[,] arr = new char[yAxis, xAxis];
+            char[,] arr = new char[xAxis, yAxis];
 
             for (int i = 0; i < yAxis; i++)
             {
@@ -60,20 +58,67 @@ namespace MarsRover.TerminalApp.RoverLogic
                     }
                 }
             }
+            return arr;
+        }
+        public static void PrintExes(int xAxisIn, int yAxisIn)
+        {
+            char[,] arr = CreateGrid(xAxisIn, yAxisIn);
+
+            int xAxis = (xAxisIn * 2) + 1;
+            int yAxis = (yAxisIn * 2) + 1;
 
             for (int i = 0; i < yAxis; i++)
             {
-                string combined = "";
-
                 for (int j = 0; j < xAxis; j++)
                 {
-                    combined += arr[i, j];
+                    Console.Write(arr[i, j]);
                 }
 
-                Console.WriteLine(combined);
+                Console.WriteLine();
             }
         }
-       
+
+        public static void PrintExesAndRover(Rover rover, int xAxisIn, int yAxisIn)
+        {
+            char[,] arr = CreateGrid(xAxisIn, yAxisIn);
+
+            int xAxis = (xAxisIn * 2) + 1;
+            int yAxis = (yAxisIn * 2) + 1;
+
+            var p = rover.position;
+            int roverX = p.yPosition * 2;
+            int roverY = p.xPosition * 2;
+
+            arr[roverX, roverY] = '0';
+
+            if (p.direction == InputEnums.CompassDirection.N)
+            {
+                arr[roverX, roverY + 1] = '^';
+            }
+            if (p.direction == InputEnums.CompassDirection.W)
+            {
+                arr[roverX - 1, roverY] = '<';
+            }
+            if (p.direction == InputEnums.CompassDirection.S)
+            {
+                arr[roverX, roverY - 1] = 'v';
+            }
+            if (p.direction == InputEnums.CompassDirection.E)
+            {
+                arr[roverY + 1, roverX] = '>';
+            }
+
+            for (int i = 0; i < yAxis; i++)
+            {
+                for (int j = 0; j < xAxis; j++)
+                {
+                    Console.Write(arr[i, j]);
+                }
+
+                Console.WriteLine();
+            }
+        }
+
     }
 }
 
