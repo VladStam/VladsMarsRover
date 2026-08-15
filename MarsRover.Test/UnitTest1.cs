@@ -4,6 +4,8 @@ using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using static MarsRover.TerminalApp.InputEnums;
+using MarsRover.TerminalApp;
+
 
 namespace MarsRover.Test
 {
@@ -66,8 +68,6 @@ namespace MarsRover.Test
     }
     public class Tests2
         {
-
-
             [Test]
             public void ChecksPlateauIsInValidInput()
             {
@@ -158,9 +158,8 @@ namespace MarsRover.Test
         public void PlateauInputChecker()
         {
             UI ui = new UI();
-            var output = ui.PlateauInput(ui.newParser.PlateauIsValid, ui.StringObject);
+            var output = AppLogic.PlateauInput(ui.newParser.PlateauIsValid, ui.StringObject, ui);
             Assert.That(ui.StringObject.PlateauStr, Is.EqualTo("9 9"));
-
         }
 
 
