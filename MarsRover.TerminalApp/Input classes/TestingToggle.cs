@@ -10,14 +10,14 @@ namespace MarsRover.TerminalApp.Input_classes
     {
         public bool TestingOn = true;
 
-        public string testPlateau = "5 5";
+        public string testPlateau = "25 25";
         public string firstRover = "1 2 N";
         public string firstInstructions = "LMLMMMLMLMMR";
         public string secondRover = "3 3 E";
         public string secondInstructions = "MMRMMRMRRM";
 
         public string[] inputMocks = [
-       "5 5",
+       "25 25",
        "1 2 N",
        "LMLMMMLMLMMR",
             ];

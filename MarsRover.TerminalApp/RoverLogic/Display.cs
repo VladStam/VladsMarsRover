@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -36,25 +37,25 @@ namespace MarsRover.TerminalApp.RoverLogic
 
             char[,] arr = new char[xAxis, yAxis];
 
-            for (int i = 0; i < yAxis; i++)
+            for (int y = 0; y < yAxis; y++)
             {
-                for (int j = 0; j < xAxis; j++)
+                for (int x = 0; x < xAxis; x++)
                 {
-                    if (i % 2 == 0 && j % 2 == 0)
+                    if (y % 2 == 0 && x % 2 == 0)
                     {
-                        arr[i, j] = '+';
+                        arr[y, x] = '+';
                     }
-                    else if (i % 2 == 0)
+                    else if (y % 2 == 0)
                     {
-                        arr[i, j] = '-';
+                        arr[y, x] = '—';
                     }
-                    else if (j % 2 == 0)
+                    else if (x % 2 == 0)
                     {
-                        arr[i, j] = '|';
+                        arr[y, x] = '|';
                     }
                     else
                     {
-                        arr[i, j] = ' ';
+                        arr[y, x] = ' ';
                     }
                 }
             }
@@ -65,35 +66,35 @@ namespace MarsRover.TerminalApp.RoverLogic
             int xAxis = (xAxisIn * 2) + 1;
             int yAxis = (yAxisIn * 2) + 1;
             char[,] arr = new char[xAxis, yAxis];
-            for (int i = 0; i < yAxis; i++)
+            for (int y = 0; y < yAxis; y++)
             {
-                for (int j = 0; j < xAxis; j++)
+                for (int x = 0; x < xAxis; x++)
                 {
-                    if (i % 2 == 0 && j % 2 == 0)
+                    if (x % 2 == 0 && x % 2 == 0)
                     {
-                        arr[i, j] = '+';
+                        arr[y, x] = '+';
                     }
-                    else if (i % 2 == 0)
+                    else if (y % 2 == 0)
                     {
-                        arr[i, j] = '-';
+                        arr[y, x] = '—';
                     }
-                    else if (j % 2 == 0)
+                    else if (x % 2 == 0)
                     {
-                        arr[i, j] = '|';
+                        arr[y, x] = '|';
                     }
                     else
                     {
-                        arr[i, j] = ' ';
+                        arr[y, x] = ' ';
                     }
                 }
             }
             // Add index numbers to the grid
-            for (int i = 1; i <= xAxis; i += 2)
+            for (int x = 1; x <= xAxis; x += 2)
             {
                 char[] gridNumber = new char[2];
-                char[] numberArr = i.ToString().ToCharArray();
+                char[] numberArr = x.ToString().ToCharArray();
                 gridNumber[0] = numberArr[0];
-                if(numberArr.Length == 1)
+                if(x <= 9)
                 {
                     gridNumber[1] = ' ';
                 }
@@ -101,9 +102,7 @@ namespace MarsRover.TerminalApp.RoverLogic
                 {
                     gridNumber[1] = numberArr[1];
                 }
-
-                arr[i, 0] = gridNumber[0];
-
+                arr[x, 0] = gridNumber[0];
             }
             return arr;
         }
@@ -114,11 +113,11 @@ namespace MarsRover.TerminalApp.RoverLogic
             int xAxis = (xAxisIn * 2) + 1;
             int yAxis = (yAxisIn * 2) + 1;
 
-            for (int i = 0; i < yAxis; i++)
+            for (int y = 0; y < yAxis; y++)
             {
-                for (int j = 0; j < xAxis; j++)
+                for (int x = 0; x < xAxis; x++)
                 {
-                    Console.Write(arr[i, j]);
+                    Console.Write(arr[y, x]);
                 }
 
                 Console.WriteLine();
@@ -159,24 +158,41 @@ namespace MarsRover.TerminalApp.RoverLogic
                 arr[roverY, roverX + 1] = '>';
             }
 
-            // Print X-axis numbers
-            Console.Write("   ");
+
+        // Print X-axis numbers
+        Console.Write("  ");
 
             for (int x = 0; x < xAxisIn; x++)
             {
-                Console.Write($"{x} ");
+                if (x <= 9)
+                {
+                    Console.Write($"{x} ");
+                }
+                else
+                {
+                    Console.Write($"{x}");
+
+                }
             }
 
             Console.WriteLine();
 
-            // Print grid
+            // iterate through grid by row
             for (int y = 0; y < yAxis; y++)
             {
                 // Print Y-axis number on grid rows
                 if (y % 2 == 1)
                 {
-                    int yCoordinate = y / 2;
-                    Console.Write($"{yCoordinate} ");
+                    int yIndex = y / 2;
+                    if ((y / 2) <= 9)
+                    {
+
+                        Console.Write($"{yIndex} ");
+                    }
+                    else
+                    {
+                        Console.Write($"{yIndex}");
+                    }
                 }
                 else
                 {
@@ -184,9 +200,9 @@ namespace MarsRover.TerminalApp.RoverLogic
                 }
 
                 // Print the actual grid
-                for (int j = 0; j < xAxis; j++)
+                for (int x = 0; x < xAxis; x++)
                 {
-                    Console.Write(arr[y, j]);
+                    Console.Write(arr[y, x]);
                 }
 
                 Console.WriteLine();
