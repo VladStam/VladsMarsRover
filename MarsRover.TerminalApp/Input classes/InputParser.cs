@@ -62,7 +62,7 @@ namespace MarsRover.TerminalApp.Input_classes
          
             char[] chars = inputString.ToUpper().Trim().ToCharArray();
             // turn the input string after format checks into a char array of only upper case letters and then parse the char array into a list of Instructs enums using a switch statement. Then return the list of Instructs enums.
-            List<Instructs> instructsList = chars.Select(c => c switch
+            List<Instructs> instructsList = chars.Where(c => !char.IsWhiteSpace(c)).Select(c => c switch
             {
                 'L' => Instructs.L,
                 'R' => Instructs.R,

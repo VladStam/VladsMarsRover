@@ -24,19 +24,33 @@ namespace MarsRover.Test
 
             Assert.That(output, Is.EquivalentTo(expectedList));
         }
+
         [Test]
         public void TurnsStringIntoInstruction2()
         {
-            InputParser parser = new InputParser();
-            string testString = "LLqLRb RMM 3";
+            string testString = "Ll  LR RmM";
 
             List<Instructs> expectedList =
-                 new List<Instructs> { Instructs.L, Instructs.L, Instructs.L, Instructs.R, Instructs.R, Instructs.M, Instructs.M };
+                new List<Instructs> { Instructs.L, Instructs.L, Instructs.L, Instructs.R, Instructs.R, Instructs.M, Instructs.M };
 
+            InputParser parser = new InputParser();
             var output = parser.InstructionParser(testString);
 
             Assert.That(output, Is.EquivalentTo(expectedList));
         }
+        [Test]
+        public void TurnsStringIntoExceptionNotInstruction()
+        {
+            InputParser parser = new InputParser();
+            string testString = "LLqLRb RMM 3";
+
+            Assert.Throws<InvalidOperationException>(() =>
+                parser.InstructionParser(testString)
+            );
+        }
+           
+
+        
         [Test]
         public void TurnsStringIntopostion()
         {
