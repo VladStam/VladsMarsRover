@@ -9,7 +9,7 @@ using MarsRover.TerminalApp;
 
 namespace MarsRover.Test
 {
-    public class Tests
+    public class ParserTests
     {
         [Test]
         public void TurnsStringIntoInstruction()
@@ -48,8 +48,6 @@ namespace MarsRover.Test
                 parser.InstructionParser(testString)
             );
         }
-           
-
         
         [Test]
         public void TurnsStringIntopostion()
@@ -80,7 +78,7 @@ namespace MarsRover.Test
             Assert.That(output, Is.EqualTo(expectedval));
         }
     }
-    public class Tests2
+    public class ValidInputTests
         {
             [Test]
             public void ChecksPlateauIsInValidInput()
@@ -157,6 +155,19 @@ namespace MarsRover.Test
                 Assert.That(output, Is.EqualTo(false));
             }
         }
+
+    public class CompassTests
+    {
+        [Test]
+        public void ChecksInputedInstructionIsValidInput()
+        {
+            UI ui = new UI();
+            ui.StringObject.PlateauStr = "7 7";
+            ui.newParser.PlateauIsValid = true;
+            var output = AppLogic.PlateauInput(ui.newParser.PlateauIsValid, ui.StringObject, ui);
+            Assert.That(output, Is.EqualTo("7 7"));
+        }
+    }
     public class Tests3
     {
 
@@ -226,14 +237,8 @@ namespace MarsRover.Test
             Rover roverExpected = new Rover(ui.newParser.PositionParser(firstRover),  ui.newParser.InstructionParser(firstInstructions),ui.newParser.PlateauParser(testPlateau));
             Assert.That(rover, Is.EqualTo(roverExpected));
         }
-        
-        
-
-        
 
     }
-    
-    
     
 }
 
