@@ -83,7 +83,7 @@ namespace MarsRover.TerminalApp.Input_classes
                             .Build();
 
             rover.StoredPosition = rover.position;
-            uI.director.activeSpace.Rovers.Add(rover);
+            uI.director.activeSpace.ExistingRovers.Add(rover);
             return rover;
         }
     }

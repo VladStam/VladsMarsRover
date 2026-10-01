@@ -8,10 +8,7 @@ namespace MarsRover.TerminalApp.RoverLogic
 {
     public class ActiveSpace
     {
-        public List<Rover> Rovers = new List<Rover>();
-
-
-
+        public List<Rover> ExistingRovers = new List<Rover>();
 
     }
 }

@@ -46,6 +46,7 @@ namespace MarsRover.TerminalApp
                         if (director.newParser.InstructionIsValid)
                         {
                             AppLogic.BuildRover(this);
+
                         }
                     }
                 }

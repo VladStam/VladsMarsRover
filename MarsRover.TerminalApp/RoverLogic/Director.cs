@@ -37,10 +37,12 @@ namespace MarsRover.TerminalApp.RoverLogic
         {
             ui.StartUp();
           
-            Display.PrintRover(activeSpace.Rovers[0]);
+            Display.PrintRover(activeSpace.ExistingRovers[0]);
             Movement movement = new Movement();
-            movement.BlackBox(activeSpace.Rovers[0]);
-            Display.PrintRover(activeSpace.Rovers[0]);
+            movement.BlackBox(activeSpace.ExistingRovers[0]);
+            Display.PrintRover(activeSpace.ExistingRovers[0]);
+
+            Display.PrintExesAndRover(activeSpace.ExistingRovers[0], activeSpace.ExistingRovers[0].plateau.xAxis, activeSpace.ExistingRovers[0].plateau.yAxis);
         }
         
     }
