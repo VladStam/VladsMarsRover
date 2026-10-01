@@ -4,6 +4,9 @@ using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Shouldly;
 using System.Diagnostics.CodeAnalysis;
 using static MarsRover.TerminalApp.InputEnums;
+using static MarsRover.TerminalApp.RoverLogic.Display;
+using static MarsRover.TerminalApp.RoverLogic.Movement;
+using static MarsRover.TerminalApp.RoverLogic.Rover;
 using MarsRover.TerminalApp;
 
 
@@ -156,21 +159,28 @@ namespace MarsRover.Test
             }
         }
 
-    public class CompassTests
+    public class DisplayTests
     {
+        public Rover testRover1 = new Rover( 
+            new Position(1, 2, CompassDirection.N), 
+            new List<Instructs> { Instructs.L, Instructs.M, Instructs.R }, 
+            new Plateau(5, 5)
+        );
+
         [Test]
-        public void ChecksInputedInstructionIsValidInput()
+        public void DisplayRover()
         {
-            UI ui = new UI();
-            ui.StringObject.PlateauStr = "7 7";
-            ui.newParser.PlateauIsValid = true;
-            var output = AppLogic.PlateauInput(ui.newParser.PlateauIsValid, ui.StringObject, ui);
-            Assert.That(output, Is.EqualTo("7 7"));
+            Display.PrintRover(testRover1);
+        }
+        [Test]
+        public void DisplayGrid()
+        {
+
         }
     }
-    public class Tests3
+    }
+    public class UIInteractionTests
     {
-
         [Test]
         public void RequestsText()
         {
@@ -240,6 +250,6 @@ namespace MarsRover.Test
 
     }
     
-}
+
 
 
