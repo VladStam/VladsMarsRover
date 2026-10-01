@@ -14,4 +14,4 @@ movement.BlackBox(ui.activeSpace.Rovers[0]);
 Display.PrintRover(ui.activeSpace.Rovers[0]);
 
 
-Display.PrintExesAndRover(ui.activeSpace.Rovers[0], 26, 26);
+Display.PrintExesAndRover(ui.activeSpace.Rovers[0], 6, 6);

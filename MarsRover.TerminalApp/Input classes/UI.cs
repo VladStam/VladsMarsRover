@@ -24,7 +24,7 @@ namespace MarsRover.TerminalApp
 
             public ActiveSpace activeSpace = new ActiveSpace();
 
-            public TestingToggle toggle = new TestingToggle(true);
+            public TestingToggle toggle = new TestingToggle();
 
             public string[] textPrompts =
                 [

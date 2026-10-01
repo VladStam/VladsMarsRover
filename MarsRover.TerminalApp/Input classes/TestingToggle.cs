@@ -8,7 +8,7 @@ namespace MarsRover.TerminalApp.Input_classes
 {
     public class TestingToggle
     {
-        public bool TestingOn = true;
+        public bool TestingOn = false;
 
         public string testPlateau = "25 25";
         public string firstRover = "1 2 N";
@@ -21,9 +21,9 @@ namespace MarsRover.TerminalApp.Input_classes
        "1 2 N",
        "LMLMMMLMLMMR",
             ];
-        public TestingToggle(bool testingOn)
+        public TestingToggle()
         {
-            TestingOn = testingOn;
+          
         }
     }
 }
