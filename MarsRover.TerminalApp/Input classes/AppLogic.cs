@@ -23,10 +23,10 @@ namespace MarsRover.TerminalApp.Input_classes
                 }
                 stringObject.PlateauStr = userInput;
                 //once we have a string input we check if it is valid using the parser, if it is valid we set the plateauIsValid bool to true and the parser property to true, if not we print an error message and loop again
-                if (uI.newParser.PlateauIsValidCheck(stringObject.PlateauStr))
+                if (uI.director.newParser.PlateauIsValidCheck(stringObject.PlateauStr))
                 {
                     plateauIsValid = true;
-                    uI.newParser.PlateauIsValid = true;
+                    uI.director.newParser.PlateauIsValid = true;
                 }
                 else { Console.WriteLine("The input is invalid"); }
             }
@@ -43,15 +43,15 @@ namespace MarsRover.TerminalApp.Input_classes
                 }
                 stringObject.PositionStr = userInput;
 
-                if (uI.newParser.PositionIsValidCheck(stringObject.PositionStr))
+                if (uI.director.newParser.PositionIsValidCheck(stringObject.PositionStr))
                 {
                     isValidPosition = true;
-                    uI.newParser.PositionIsValid = true;
+                    uI.director.newParser.PositionIsValid = true;
                     Console.WriteLine(uI.textPrompts[4]);
                 }
                 else { Console.WriteLine("The input is invalid"); }
             }
-            return uI.StringObject.PositionStr;
+            return uI.director.StringObject.PositionStr;
         }
         public static string InstructionInput(bool isValidInstruction, InputStringObject stringObject, UI uI)
         {
@@ -64,26 +64,26 @@ namespace MarsRover.TerminalApp.Input_classes
                 }
                 stringObject.InstructionStr = userInput;
 
-                if (uI.newParser.InstructionIsValidCheck(stringObject.InstructionStr))
+                if (uI.director.newParser.InstructionIsValidCheck(stringObject.InstructionStr))
                 {
                     isValidInstruction = true;
-                    uI.newParser.InstructionIsValid = true;
+                    uI.director.newParser.InstructionIsValid = true;
                     Console.WriteLine(uI.textPrompts[5]);
                 }
                 else { Console.WriteLine("The input is invalid"); }
             }
-            return uI.StringObject.InstructionStr;
+            return uI.director.StringObject.InstructionStr;
         }
         public static Rover BuildRover(UI uI)
         {
             Rover rover = new Rover.Builder()
-                            .AddPlateau(uI.newParser.PlateauParser(uI.  StringObject.PlateauStr))
-                            .AddPosition(uI.newParser.PositionParser(uI.StringObject.PositionStr))
-                            .AddInstruction(uI.newParser.InstructionParser(uI.StringObject.InstructionStr))
+                            .AddPlateau(uI.director.newParser.PlateauParser(uI.director.StringObject.PlateauStr))
+                            .AddPosition(uI.director.newParser.PositionParser(uI.director.StringObject.PositionStr))
+                            .AddInstruction(uI.director.newParser.InstructionParser(uI.director.StringObject.InstructionStr))
                             .Build();
 
             rover.StoredPosition = rover.position;
-            uI.activeSpace.Rovers.Add(rover);
+            uI.director.activeSpace.Rovers.Add(rover);
             return rover;
         }
     }
