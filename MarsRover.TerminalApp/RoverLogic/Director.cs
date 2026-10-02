@@ -41,7 +41,11 @@ namespace MarsRover.TerminalApp.RoverLogic
             Movement.BlackBox(activeSpace.ExistingRovers[0]);
             Display.PrintRover(activeSpace.ExistingRovers[0]);
 
+            Display.PrintExes(activeSpace.ExistingRovers[0].plateau.xAxis, activeSpace.ExistingRovers[0].plateau.yAxis);
+
             Display.PrintExesAndRover(activeSpace.ExistingRovers[0], activeSpace.ExistingRovers[0].plateau.xAxis, activeSpace.ExistingRovers[0].plateau.yAxis);
+
+
         }
         
     }

@@ -35,8 +35,8 @@ namespace MarsRover.TerminalApp.RoverLogic
         //method which calculates the dimensions of the grid based on the input values for the x and y axes. by just doubling and adding 1 to account for the grid lines and corners.
         public static (int, int) CalculateAxes(int xAxisIn, int yAxisIn)
         {
-            int xAxis = (xAxisIn * 2) + 1;
-            int yAxis = (yAxisIn * 2) + 1;
+            int xAxis = (xAxisIn * 2) + 3;
+            int yAxis = (yAxisIn * 2) + 3;
             return (xAxis, yAxis);
         }
 
@@ -71,28 +71,28 @@ namespace MarsRover.TerminalApp.RoverLogic
             }
             return arr;
         }
-        public static char[,] CreateGridIndexed(int xAxisIn, int yAxisIn)
-        {
-            var (xAxis, yAxis) = CalculateAxes(xAxisIn, yAxisIn);
-            Char[,] arr = CreateGrid(xAxisIn, yAxisIn);
-            // Add index numbers to the grid
-            for (int x = 1; x <= xAxis; x += 2)
-            {
-                char[] gridNumber = new char[2];
-                char[] numberArr = x.ToString().ToCharArray();
-                gridNumber[0] = numberArr[0];
-                if(x <= 9)
-                {
-                    gridNumber[1] = ' ';
-                }
-                else
-                {
-                    gridNumber[1] = numberArr[1];
-                }
-                arr[x, 0] = gridNumber[0];
-            }
-            return arr;
-        }
+        //public static char[,] CreateGridIndexed(int xAxisIn, int yAxisIn)
+        //{
+        //    var (xAxis, yAxis) = CalculateAxes(xAxisIn, yAxisIn);
+        //    Char[,] arr = CreateGrid(xAxisIn, yAxisIn);
+        //    // Add index numbers to the grid
+        //    for (int x = 1; x <= xAxis; x += 2)
+        //    {
+        //        char[] gridNumber = new char[2];
+        //        char[] numberArr = x.ToString().ToCharArray();
+        //        gridNumber[0] = numberArr[0];
+        //        if(x <= 9)
+        //        {
+        //            gridNumber[1] = ' ';
+        //        }
+        //        else
+        //        {
+        //            gridNumber[1] = numberArr[1];
+        //        }
+        //        arr[x, 0] = gridNumber[0];
+        //    }
+        //    return arr;
+        //}
         public static void PrintExes(int xAxisIn, int yAxisIn)
         {
             char[,] arr = CreateGrid(xAxisIn, yAxisIn);
@@ -115,9 +115,10 @@ namespace MarsRover.TerminalApp.RoverLogic
             char[,] arr = CreateGrid(xAxisIn, yAxisIn);
 
             var (xAxis, yAxis) = CalculateAxes(xAxisIn, yAxisIn);
+            //xAxis = xAxisIn + 1;
+            //yAxis = yAxisIn + 1;    
 
             var p = rover.position;
-
             // Convert rover's logical coordinates
             // into positions inside the visual grid.
             int roverX = (p.xPosition * 2) + 1;
@@ -147,7 +148,7 @@ namespace MarsRover.TerminalApp.RoverLogic
             // Print X-axis numbers
             Console.Write("  ");
 
-            for (int x = 0; x < xAxisIn; x++)
+            for (int x = 0; x <= xAxisIn; x++)
             {
                 if (x <= 9)
                 {
@@ -163,7 +164,7 @@ namespace MarsRover.TerminalApp.RoverLogic
             Console.WriteLine();
 
             // iterate through grid by row
-            for (int y = 0; y < yAxis; y++)
+            for (int y = 0; y <= yAxis; y++)
             {
                 // Print Y-axis number on grid rows
                 if (y % 2 == 1)

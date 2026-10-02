@@ -41,7 +41,7 @@ namespace MarsRover.Test
             string userInput = ui.RequestUserInput(2);
             Assert.That(userInput, Is.EqualTo(""));
         }
-        [Test]
+    [Test]
 
         public void PlateauInputChecker()
         {
