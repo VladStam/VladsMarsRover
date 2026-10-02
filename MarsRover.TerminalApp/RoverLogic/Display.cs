@@ -164,7 +164,7 @@ namespace MarsRover.TerminalApp.RoverLogic
             Console.WriteLine();
 
             // iterate through grid by row
-            for (int y = 0; y <= yAxis; y++)
+            for (int y = 0; y < yAxis; y++)
             {
                 // Print Y-axis number on grid rows
                 if (y % 2 == 1)
