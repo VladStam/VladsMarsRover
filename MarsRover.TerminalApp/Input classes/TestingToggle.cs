@@ -17,7 +17,7 @@ namespace MarsRover.TerminalApp.Input_classes
         public string secondInstructions = "MMRMMRMRRM";
 
         public string[] inputMocks = [
-       "25 25",
+       "5 5",
        "1 2 N",
        "LMLMMMLMLMMR",
             ];

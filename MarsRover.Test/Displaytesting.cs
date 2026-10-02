@@ -77,7 +77,6 @@ namespace MarsRover.Test
         public void BlackboxValidator()
         {
             UI ui = new UI(dummyDirector);
-            Movement logic = new Movement();
             string testPlateau = "5 5";
             string firstRover = "1 2 N";
             string firstInstructions = "LMLMLMLMM";
@@ -95,7 +94,7 @@ namespace MarsRover.Test
                             .AddPosition(ui.director.newParser.PositionParser(firstRover))
                             .AddInstruction(ui.director.newParser.InstructionParser(firstInstructions))
                             .Build();
-            rover = logic.BlackBox(rover);
+            rover = Movement.BlackBox(rover);
             string output1 = "1 3 N";
             Rover roverExpected = new Rover(ui.director.newParser.PositionParser(firstRover),  ui.director.newParser.InstructionParser(firstInstructions),ui.director.newParser.PlateauParser(testPlateau));
             Assert.That(rover, Is.EqualTo(roverExpected));

@@ -11,6 +11,9 @@ namespace MarsRover.Test
 {
     public class DummyData
     {
+
+        public string testInstructsString1 = "LLLRRMM";
+
         public string ExampleGrid1 =
     "0   1   2   3   4   5\n" +
   "  + - + - + - + - + - + - +\n" +

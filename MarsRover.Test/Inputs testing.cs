@@ -1,29 +1,32 @@
+using MarsRover.TerminalApp;
 using MarsRover.TerminalApp.Input_classes;
 using MarsRover.TerminalApp.RoverLogic;
 using Microsoft.VisualStudio.TestPlatform.Utilities;
 using Shouldly;
 using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using static MarsRover.TerminalApp.InputEnums;
 using static MarsRover.TerminalApp.RoverLogic.Display;
 using static MarsRover.TerminalApp.RoverLogic.Movement;
 using static MarsRover.TerminalApp.RoverLogic.Rover;
-using MarsRover.TerminalApp;
 
 
 namespace MarsRover.Test
 {
     public class ParserTests
     {
+        DummyData dummyData = new DummyData();
+        Director dummyDirector = new Director();
+    
         [Test]
         public void TurnsStringIntoInstruction()
         {
-            string testString = "LLLRRMM";
-
+            string testString1 = dummyData.testInstructsString1;
             List<Instructs> expectedList =
                 new List<Instructs> { Instructs.L, Instructs.L, Instructs.L, Instructs.R, Instructs.R, Instructs.M, Instructs.M };
 
             InputParser parser = new InputParser();
-            var output = parser.InstructionParser(testString);
+            var output = parser.InstructionParser(testString1);
 
             Assert.That(output, Is.EquivalentTo(expectedList));
         }
@@ -154,6 +157,15 @@ namespace MarsRover.Test
 
                 Assert.That(output, Is.EqualTo(false));
             }
+
+        [Test]
+        public void checkRotationIsValidInput()
+        {
+            string testString = "LLRMRM";
+
+            Compass.Rotate(CompassDirection.N, Instructs.L);
+                
+        }
     }
 }
     

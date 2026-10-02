@@ -8,9 +8,9 @@ using static MarsRover.TerminalApp.InputEnums;
 namespace MarsRover.TerminalApp.RoverLogic
 {
 
-    public class Compass
+    public static class Compass
     {
-        public CompassDirection Rotate(CompassDirection point, Instructs instructs)
+        public static CompassDirection Rotate(CompassDirection point, Instructs instructs)
         {
             int pointIndex = (int)point;
             int directionIndex = (int)instructs;
